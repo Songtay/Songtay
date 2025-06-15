@@ -20,8 +20,13 @@
 ![Git](https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=git&logoColor=white)
 
 ### 📊 GitHub Stats
-![GitHub Followers](https://img.shields.io/github/followers/你的用户名?style=social)
-![GitHub Stars](https://img.shields.io/github/stars/你的用户名?style=social)
+![GitHub Followers](https://img.shields.io/github/followers/Songtay?style=social)
+![GitHub Stars](https://img.shields.io/github/stars/Songtay?style=social)
 
 ### 📅 GitHub Contributions
-![GitHub Contributions](https://ghchart.rshah.org/你的用户名)
+![GitHub Contributions](https://ghchart.rshah.org/Songtay)
+
+### 💬 Random Quote
+<!-- QUOTE:START -->
+> "The best way to predict the future is to invent it." — Alan Kay
+<!-- QUOTE:END -->
