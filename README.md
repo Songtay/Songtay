@@ -1,4 +1,4 @@
-![Women Power - Avatar (1)](https://github.com/user-attachments/assets/80ed1554-e085-4b5b-ada2-fcf7d5dd3973)# 👋 Hi, I'm Songtay
+👋 Hi, I'm Songtay
 
 - 🔭 目前正在开发: [项目链接]  
 - 🌱 正在学习: Python/React/AI  
@@ -7,7 +7,6 @@
 
 <p align="center">
   <img src="https://github-readme-stats.vercel.app/api?username=Songtay&show_icons=true&theme=radical" />
-  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=Songtay&layout=compact&theme=radical" />
 </p>
 
 
