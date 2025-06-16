@@ -32,6 +32,6 @@
 <!-- QUOTE:END -->
 
 ## 📝 Blogs
-- [2024-05-20] [承认脆弱，才是真正的勇气](https://songtay.github.io/articles/Admitting)
-- [2024-03-15] [2020年记疫丨在破碎与重建之间](https://songtay.github.io/articles/courage-in-vulnerability/)
-- [2023-11-08] [你好，旅行者](https://songtay.github.io/welcome)
+- [你好，旅行者](https://songtay.github.io/welcome)
+- [承认脆弱，才是真正的勇气](https://songtay.github.io/articles/Admitting)
+- [2020年记疫丨在破碎与重建之间](https://songtay.github.io/articles/courage-in-vulnerability/)
