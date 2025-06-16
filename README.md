@@ -35,35 +35,41 @@
 ## 📝 最新文章
 <div id="hexo-posts">加载中...</div>
 <script>
-// 封装为立即执行函数避免污染全局
-(() => {
+// 封装执行避免全局污染
+(function() {
   const container = document.getElementById('hexo-posts');
   
-  // 创建隐藏的图片元素触发请求
-  const trigger = document.createElement('img');
-  trigger.style.display = 'none';
+  // 创建透明像素图片承载代码
+  const img = new Image();
+  img.width = 0;
+  img.height = 0;
   
-  // 通过 data: URI 传递函数
-  trigger.src = `data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg'>${
+  // 通过SVG的data URI传递JS代码
+  img.src = `data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg'>${
     encodeURIComponent(`
       <script>
-        (async () => {
-          try {
-            const res = await fetch('https://songtay.github.io/api/posts.json');
-            const posts = await res.json();
-            parent.document.getElementById('hexo-posts').innerHTML = posts.map(p => 
-              \`<p><a href="\${p.url}" target="_blank">\${p.title}</a><br>
-              <small>\${p.date}</small></p>\`
-            ).join('');
-          } catch(e) {
-            parent.document.getElementById('hexo-posts').innerHTML = '加载失败';
-          }
+        (function() {
+          fetch('https://songtay.github.io/api/posts.json')
+            .then(response => response.json())
+            .then(posts => {
+              const html = posts.map(post => 
+                '<div style="margin-bottom: 10px;">' +
+                '<a href="' + post.url + '" style="color: #0366d6; text-decoration: none;">' + post.title + '</a>' +
+                '<div style="font-size: 12px; color: #586069;">' + post.date + '</div>' +
+                '</div>'
+              ).join('');
+              window.parent.document.getElementById('hexo-posts').innerHTML = html;
+            })
+            .catch(() => {
+              window.parent.document.getElementById('hexo-posts').innerHTML = 
+                '<p style="color: #cb2431;">数据加载失败，请<a href="https://songtay.github.io" style="color: #0366d6;">访问博客</a></p>';
+            });
         })()
       <\/script>
     `)
-  }"></svg>`;
+  }</svg>`;
 
-  container.appendChild(trigger);
+  container.appendChild(img);
 })();
 </script>
 
