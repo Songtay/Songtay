@@ -32,12 +32,6 @@
 <!-- QUOTE:END -->
 
 ## 📝 Blogs
-<div id="hexo-posts">Loading...</div>
-<script>
-  fetch('https://songtay.github.io/api/posts.json')
-    .then(r => r.json())
-    .then(posts => {
-      document.getElementById('hexo-posts').innerHTML = 
-        posts.map(p => `<li><a href="${p.url}">${p.title}</a></li>`).join('');
-    });
-</script>
+## 最新文章
+![最新文章](https://img.shields.io/badge/dynamic/json?url=https://songtay.github.io/api/posts.json&label=文章&query=$[0].title&color=blue)<div id="hexo-posts">Loading...</div>
+
