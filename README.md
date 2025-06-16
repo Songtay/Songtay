@@ -35,40 +35,35 @@
 ## 📝 最新文章
 <div id="hexo-posts">加载中...</div>
 <script>
-// 封装执行避免全局污染
 (function() {
   const container = document.getElementById('hexo-posts');
-  
-  // 创建透明像素图片承载代码
   const img = new Image();
-  img.width = 0;
-  img.height = 0;
+  img.width = img.height = 0;
   
-  // 通过SVG的data URI传递JS代码
   img.src = `data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg'>${
     encodeURIComponent(`
       <script>
-        (function() {
+        (function(){
           fetch('https://songtay.github.io/api/posts.json')
-            .then(response => response.json())
+            .then(r => r.json())
             .then(posts => {
-              const html = posts.map(post => 
-                '<div style="margin-bottom: 10px;">' +
-                '<a href="' + post.url + '" style="color: #0366d6; text-decoration: none;">' + post.title + '</a>' +
-                '<div style="font-size: 12px; color: #586069;">' + post.date + '</div>' +
+              const html = posts.map(p => 
+                '<div style="margin:8px 0">' +
+                '<a href="' + p.url + '" style="color:#0366d6;text-decoration:none">' + p.title + '</a>' +
+                '<div style="font-size:12px;color:#586069">' + p.date + '</div>' +
                 '</div>'
               ).join('');
-              window.parent.document.getElementById('hexo-posts').innerHTML = html;
+              parent.document.getElementById('hexo-posts').innerHTML = html;
             })
             .catch(() => {
-              window.parent.document.getElementById('hexo-posts').innerHTML = 
-                '<p style="color: #cb2431;">数据加载失败，请<a href="https://songtay.github.io" style="color: #0366d6;">访问博客</a></p>';
+              parent.document.getElementById('hexo-posts').innerHTML = 
+                '<p style="color:#cb2431">数据加载失败，<a href="https://songtay.github.io" style="color:#0366d6">访问博客</a></p>';
             });
         })()
       <\/script>
     `)
   }</svg>`;
-
+  
   container.appendChild(img);
 })();
 </script>
