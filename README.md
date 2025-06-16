@@ -32,39 +32,6 @@
 <!-- QUOTE:END -->
 
 ## 📝 Blogs
-## 📝 最新文章
-<div id="hexo-posts">加载中...</div>
-<script>
-(function() {
-  const container = document.getElementById('hexo-posts');
-  const img = new Image();
-  img.width = img.height = 0;
-  
-  img.src = `data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg'>${
-    encodeURIComponent(`
-      <script>
-        (function(){
-          fetch('https://songtay.github.io/api/posts.json')
-            .then(r => r.json())
-            .then(posts => {
-              const html = posts.map(p => 
-                '<div style="margin:8px 0">' +
-                '<a href="' + p.url + '" style="color:#0366d6;text-decoration:none">' + p.title + '</a>' +
-                '<div style="font-size:12px;color:#586069">' + p.date + '</div>' +
-                '</div>'
-              ).join('');
-              parent.document.getElementById('hexo-posts').innerHTML = html;
-            })
-            .catch(() => {
-              parent.document.getElementById('hexo-posts').innerHTML = 
-                '<p style="color:#cb2431">数据加载失败，<a href="https://songtay.github.io" style="color:#0366d6">访问博客</a></p>';
-            });
-        })()
-      <\/script>
-    `)
-  }</svg>`;
-  
-  container.appendChild(img);
-})();
-</script>
-
+- [2024-05-20] [承认脆弱，才是真正的勇气](https://songtay.github.io/posts/courage)
+- [2024-03-15] [2020年记疫丨在破碎与重建之间](https://songtay.github.io/posts/2020-covid)
+- [2023-11-08] [你好，旅行者](https://songtay.github.io/posts/hello-traveler
