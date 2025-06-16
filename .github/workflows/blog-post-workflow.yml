@@ -1,8 +1,8 @@
 name: Blog Post Workflow
 on:
   schedule:
-    - cron: '0 */6 * * *'  # 每6小时自动运行一次
-  workflow_dispatch:       # 支持手动触发
+    - cron: '0 0 * * *'  
+  workflow_dispatch:       
 
 jobs:
   update-readme:
@@ -10,7 +10,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          fetch-depth: 0  # 确保拉取完整的提交历史（关键修复）
+          fetch-depth: 0 
       - uses: gautamkrishnar/blog-post-workflow@master
         with:
           feed_list: "https://songtay.github.io/atom.xml"
@@ -19,5 +19,5 @@ jobs:
           git config --global user.name 'Songtay'
           git config --global user.email '402521982@qq.com'
           git add -A
-          git commit -m "自动更新博客列表"
+          git commit -m "update"
           git push
