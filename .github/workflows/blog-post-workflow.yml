@@ -1,28 +1,32 @@
 name: Blog Post Workflow
 on:
   schedule:
-    - cron: '0 0 * * *'  
-  workflow_dispatch:       
+    - cron: '0 0 * * *'  # 每天UTC 0点运行
+  workflow_dispatch:
 
 permissions:
-  actions: write
-  checks: write
-  contents: write
-  
+  contents: write  # 精简权限，避免风控
+
 jobs:
   update-readme:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
         with:
-          fetch-depth: 0 
+          fetch-depth: 0
+          persist-credentials: false  # 关键修复：禁用缓存令牌
+
       - uses: gautamkrishnar/blog-post-workflow@master
         with:
           feed_list: "https://songtay.github.io/atom.xml"
+          max_post_count: 3  # 限制显示篇数降低负载
+
       - name: Commit changes
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # 显式传递令牌
         run: |
           git config --global user.name 'Songtay'
           git config --global user.email '402521982@qq.com'
           git add -A
-          git commit -m "update"
-          git push
+          git commit -m "Auto-update: $(date +'%Y-%m-%d %H:%M')"  # 带时间戳的提交信息
+          git push origin HEAD:main
