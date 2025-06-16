@@ -32,6 +32,18 @@
 <!-- QUOTE:END -->
 
 ## 📝 Blogs
-## 最新文章
-![最新文章](https://img.shields.io/badge/dynamic/json?url=https://songtay.github.io/api/posts.json&label=文章&query=$[0].title&color=blue)<div id="hexo-posts">Loading...</div>
+<div id="hexo-posts"></div>
+<script>
+// 兼容 GitHub 的 CSP 限制
+const loadPosts = async () => {
+  const res = await fetch('https://songtay.github.io/api/posts.json', {
+    headers: { 'Accept': 'application/json' }
+  });
+  const posts = await res.json();
+  document.getElementById('hexo-posts').innerHTML = 
+    posts.map(p => `<p><a href="${p.url}">${p.title}</a><br><small>${p.date}</small></p>`).join('');
+};
+// 利用图片加载触发请求
+new Image().src = `data:,<script>(${loadPosts.toString()})()<\/script>`;
+</script>
 
