@@ -32,18 +32,38 @@
 <!-- QUOTE:END -->
 
 ## 📝 Blogs
-<div id="hexo-posts"></div>
+## 📝 最新文章
+<div id="hexo-posts">加载中...</div>
 <script>
-// 兼容 GitHub 的 CSP 限制
-const loadPosts = async () => {
-  const res = await fetch('https://songtay.github.io/api/posts.json', {
-    headers: { 'Accept': 'application/json' }
-  });
-  const posts = await res.json();
-  document.getElementById('hexo-posts').innerHTML = 
-    posts.map(p => `<p><a href="${p.url}">${p.title}</a><br><small>${p.date}</small></p>`).join('');
-};
-// 利用图片加载触发请求
-new Image().src = `data:,<script>(${loadPosts.toString()})()<\/script>`;
+// 封装为立即执行函数避免污染全局
+(() => {
+  const container = document.getElementById('hexo-posts');
+  
+  // 创建隐藏的图片元素触发请求
+  const trigger = document.createElement('img');
+  trigger.style.display = 'none';
+  
+  // 通过 data: URI 传递函数
+  trigger.src = `data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg'>${
+    encodeURIComponent(`
+      <script>
+        (async () => {
+          try {
+            const res = await fetch('https://songtay.github.io/api/posts.json');
+            const posts = await res.json();
+            parent.document.getElementById('hexo-posts').innerHTML = posts.map(p => 
+              \`<p><a href="\${p.url}" target="_blank">\${p.title}</a><br>
+              <small>\${p.date}</small></p>\`
+            ).join('');
+          } catch(e) {
+            parent.document.getElementById('hexo-posts').innerHTML = '加载失败';
+          }
+        })()
+      <\/script>
+    `)
+  }"></svg>`;
+
+  container.appendChild(trigger);
+})();
 </script>
 
