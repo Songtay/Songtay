@@ -32,12 +32,12 @@
 <!-- QUOTE:END -->
 
 ## 📝 Blogs
-<div id="hexo-posts"></div>
+<div id="hexo-posts">Loading...</div>
 <script>
-fetch('https://songtay.github.io/api/posts.json')
-  .then(r => r.json())
-  .then(posts => {
-    document.getElementById('hexo-posts').innerHTML = 
-      posts.map(p => `<li><a href="${p.url}">${p.title}</a></li>`).join('');
-  });
+  fetch('https://songtay.github.io/api/posts.json')
+    .then(r => r.json())
+    .then(posts => {
+      document.getElementById('hexo-posts').innerHTML = 
+        posts.map(p => `<li><a href="${p.url}">${p.title}</a></li>`).join('');
+    });
 </script>
