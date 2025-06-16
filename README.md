@@ -32,5 +32,12 @@
 <!-- QUOTE:END -->
 
 ## 📝 Blogs
-<!-- BLOG-POST-LIST:START -->
-<!-- BLOG-POST-LIST:END -->
+<div id="hexo-posts"></div>
+<script>
+fetch('https://songtay.github.io/api/posts.json')
+  .then(r => r.json())
+  .then(posts => {
+    document.getElementById('hexo-posts').innerHTML = 
+      posts.map(p => `<li><a href="${p.url}">${p.title}</a></li>`).join('');
+  });
+</script>
